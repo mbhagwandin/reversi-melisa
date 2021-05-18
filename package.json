@@ -1,0 +1,26 @@
+{
+  "name": "reversi-melisa2",
+  "version": "0.0.1",
+  "description": "web version of reversi game",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mbhagwandin/reversi-melisa.git"
+  },
+  "keywords": [
+    "reversi"
+  ],
+  "author": "Melisa Bhagwandin",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/mbhagwandin/reversi-melisa/issues"
+  },
+  "homepage": "https://github.com/mbhagwandin/reversi-melisa#readme",
+  "dependencies": {
+    "node-static": "^0.7.11",
+    "socket.io": "^4.1.2"
+  }
+}
