@@ -134,7 +134,7 @@ io.on('connection', (socket) => {
                      /* Tell everyone that a new user has joined the chat room */
                       io.of('/').to(room).emit('join_room_response',response);
                       serverLog('join_room succeeded ', JSON.stringify(response));
-                      if(room !== "Lobby"){
+                      if(room !== "Lobby") {
                           send_game_update(socket, room, 'initial update');
                       }
                  }
@@ -454,7 +454,7 @@ io.on('connection', (socket) => {
         });
 
         socket.on('play_token', (payload) => {
-            serverLog('Server received a command', '\'play_token\'',JSON.stringify(payload));
+            serverLog('Server received a command', '\'play_token\'', JSON.stringify(payload));
            
            /* Check that the data coming fro the client is correct*/
     
@@ -470,7 +470,7 @@ io.on('connection', (socket) => {
             if ((typeof player == 'undefined') || (player === null)) {
                 response = {};
                 response.result = 'fail';
-                response.message = 'play token came from an unregistered player';
+                response.message = 'play_token came from an unregistered player';
                 socket.emit('play_token_response',response);
                 serverLog('play_token command failed', JSON.stringify(response));
                 return;
@@ -485,7 +485,7 @@ io.on('connection', (socket) => {
                 return;
              }
              let game_id = player.room;
-             if ((typeof game_id == 'undefined') || (message === null)){
+             if ((typeof game_id == 'undefined') || (game_id === null)){
                 response = {};
                 response.result = 'fail';
                 response.message = 'there was no valid game associated with the play_token command';
@@ -505,7 +505,7 @@ io.on('connection', (socket) => {
              }
 
              let column = payload.column;
-             if ((typeof row == 'undefined') || (column === null)){
+             if ((typeof column == 'undefined') || (column === null)){
                 response = {};
                 response.result = 'fail';
                 response.message = 'there was no valid column associated with the play_token command';
@@ -590,7 +590,7 @@ function send_game_update(socket, game_id, message){
 
     /* Check to see if a game with the game_id exists */
     if ((typeof games[game_id] == 'undefined') || (games[game_id] === null)){
-        console.log("No game exists with game_id:" + game_id + ". Making a new game for "+ socket.id);
+        console.log("No game exists with game_id:" + game_id + ". Making a new game for " + socket.id);
         games[game_id] = create_new_game();
     }
 
@@ -658,4 +658,31 @@ function send_game_update(socket, game_id, message){
     })
 
     /* Check if the game is over */
+    let count = 0;
+    for (let row = 0; row < 8; row++) {
+        for (let column = 0; column < 8; column++) {
+            if(games[game_id].board[row][column] != ' ') {
+                count++;
+            }
+        }
+    }
+    if(count === 64) {
+        let payload = {
+            result: 'success',
+            game_id: game_id,
+            game: games[game_id],
+            who_won: 'everyone'
+        }
+        io.in(game_id).emit('game_over', payload);
+
+        /* Dele old games after one hour */
+        setTimeout(
+            ((id) => {
+                return(() => {
+                    delete games[id];
+                });
+            })(game_id)
+            , 60 * 60 * 1000
+        );
+    }
 }
