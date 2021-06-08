@@ -458,7 +458,7 @@ io.on('connection', (socket) => {
            
            /* Check that the data coming from the client is correct*/
     
-            if ((typeof payload == 'undefined') || (payload === null)){
+            if ((typeof payload == 'undefined') || (payload === null)) {
                 response = {};
                 response.result = 'fail';
                 response.message = 'client did not send a payload';
@@ -577,6 +577,9 @@ io.on('connection', (socket) => {
                 game.whose_turn = 'white';
                 game.legal_moves = calculate_legal_moves('w',game.board);
             }
+
+            let d = new Date();
+            game.last_move_time = d.getTime();
 
             send_game_update(socket, game_id, 'played a token');
         });
@@ -704,6 +707,7 @@ function calculate_legal_moves(who,board){
             }
         }
     }
+    return legal_moves;
 }
 
 function flip_line(who,dr,dc,r,c,board){
