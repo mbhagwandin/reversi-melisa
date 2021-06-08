@@ -1,14 +1,18 @@
 body {
-    background-color: rgb(102, 192, 122);
+    background-color: rgb(255, 255, 255);
 }
 
-.headerrow, #messagePane {
-    background-color: rgb(233, 255, 235);
+.headerrow {
+    background-color: rgb(210, 242, 255);
+}
+
+#messagePane {
+    background-color: rgb(240, 240, 240);
 }
 
 .join_room_response,
 .left_room_response {
-    background-color: rgb(247, 247, 247);
+    background-color: rgb(240, 240, 240);
 }
 .chat_message {
     font-size:125%;
@@ -17,14 +21,14 @@ body {
 }
 
 table#game_board{
-    background-color: rgb(81, 160, 81);
-    border:4px solid black;
+    background-color: rgb(241, 241, 241);
+    border:4px solid rgb(0, 0, 0);
     margin:0px;
     padding:0px;
 }
 
 table#game_board td{
-    border:1px solid black;
+    border:1px solid rgb(0, 0, 0);
     margin:0px;
     padding:0px;
 }
