@@ -442,7 +442,7 @@ socket.on('game_over', (payload) => {
     let nodeA = $("<div id='game_over'></div>");
     let nodeB = $("<h1>Game Over</h1>");
     let nodeC = $("<h2>" + payload.who_won + " won!</h2>");
-    let nodeD = $("<a href='lobby.html?username=" + username + "' class='btn btn-lg btn-success' role='button'>Return to lobby</a>");
+    let nodeD = $("<a href='lobby.html?username=" + username + "' class='btn btn-lg btn-primary' role='button'>Return to lobby</a>");
     nodeA.append(nodeB);
     nodeA.append(nodeC);
     nodeA.append(nodeD);

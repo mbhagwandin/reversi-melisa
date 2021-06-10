@@ -19,7 +19,7 @@
 
     .join_room_response,
     .left_room_response {
-      background-color: rgb(231, 231, 231);
+      background-color: rgb(214, 233, 255);
     }
     .chat_message {
       font-size:125%;
@@ -33,6 +33,11 @@
 
   <body>
     <div class="container-fluid">
+      <div class="row m-3 nav">
+        <div class="col text-center">
+          <img class="img-fluid" src="assets/images/logo.png" alt="Reversi Logo"/>
+        </div>
+      </div>
       <div class="row m-3 headerrow">
         <div class="col text-center">
           <h3 id="lobbyTitle" style="margin-top: 10px;">Lobby</h3>
@@ -43,7 +48,7 @@
       <div class="col">
         <div class="row align-items-start justify-content-center">
           <div class="col-md-4">
-            <h4>Players</h4>
+            <h4 style="margin-top: 10px;">Players</h4>
             <div id="players" class="align-items-end text-right m-3">
             </div>
           </div>
